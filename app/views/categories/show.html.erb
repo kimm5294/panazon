@@ -1,0 +1,7 @@
+<h1><%= @category.name %></h1>
+
+<ul>
+  <% @category.items.order(:updated_at).each do |item| %>
+    <li><%= item.name %></li>
+  <% end %>
+</ul>
