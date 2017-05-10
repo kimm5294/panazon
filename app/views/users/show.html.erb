@@ -4,13 +4,15 @@
   <h3 id="past-orders-header">Past Orders</h3>
 
   <ul id="past-orders-list">
-    <% @user.sales.each do |sale| %>
+    <% @user.purchased_items.each do |item| %>
       <li>
-        Order made on <%= order.created_at %>
+        Items Purchased: <%= item.name %>
         <br>
-        Items Purchased: <%= order. %>
+        Order made on <%= item.created_at %>
         <br>
-
+        Quantity: <%= item.count %>
+        <br>
+        Price: $<%= item.price %>
       </li>
     <% end %>
   </ul>
