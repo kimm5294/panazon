@@ -14,7 +14,7 @@
             <br>
             Quantity: <%= purchase.item.count %>
             <br>
-            Price: $<%= number_with_precision(purchase.item.price, precision: 2) %>
+            Price: $<%= number_with_precision(purchase.item.price_in_dollars, precision: 2) %>
           </li>
           <br>
         <% end %>
@@ -32,7 +32,7 @@
             <br>
             Quantity: <%= sale.item.count %>
             <br>
-            Price: $<%= number_with_precision(sale.item.price, precision: 2) %>
+            Price: $<%= number_with_precision(sale.item.price_in_dollars, precision: 2) %>
           </li>
           <br>
         <% end %>
@@ -50,7 +50,7 @@
             <br>
             Quantity: <%= item.count %>
             <br>
-            Price: $<%= number_with_precision(item.price, precision: 2) %>
+            Price: $<%= number_with_precision(item.price_in_dollars, precision: 2) %>
           </li>
           <br>
         <% end %>
