@@ -12,4 +12,4 @@ This application is an improved version of Amazon according to Pan's vision. It 
 
 ## Schema
 
-![Schema](https://cl.ly/3E303g2F322V)
+![Schema](https://d3vv6lp55qjaqc.cloudfront.net/items/1i3S1T2T0g1q243u391a/Image%202017-05-10%20at%2010.54.35%20AM.png)
