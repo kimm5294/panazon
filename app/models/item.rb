@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   has_many :transactions
   has_many :buyers, through: :transactions
 
-  def self.import(file)
+  def self.import(file, user_id)
     # csv_array = CSV.read(file)
     # csv_array.map { |row| row.to_hash }
 
@@ -17,12 +17,16 @@ class Item < ApplicationRecord
       categories = row.delete("categories")
 
       item = Item.new row.to_hash
-      item.seller_id = session[:user_id]
+      item.seller_id = user_id
       item.save
       categories.split(";").each do |category|
         item_category = Category.find_by(name: category)
         CategoriesItem.create(category_id: item_category.id, item_id: item.id) if !!item_category
       end
     end
+  end
+
+  def price_in_dollars
+    self.price.to_f / 100
   end
 end
