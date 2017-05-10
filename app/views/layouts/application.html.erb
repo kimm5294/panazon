@@ -22,7 +22,7 @@
       <a href="/">Home</a>
 
       <div class="container">
-      <% flash.each do |message_type, message| %>
+        <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
     <%= yield %>
