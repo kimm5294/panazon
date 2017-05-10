@@ -1,24 +1,11 @@
-# README
+# Panazon
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application is an improved version of Amazon according to Pan's vision. It implements a social network within an e-commerce platform.
 
-Things you may want to cover:
+Contributors:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[Gurkanver Brar](https://github.com/GBrar)
+[Matt Kim](https://github.com/kimm5294)
+[Bryan Mateer](https://github.com/Bryanxm19)
+[Shane Murphy](https://github.com/slipnslide)
+[Adriel Saporta](https://github.com/ASaporta)
