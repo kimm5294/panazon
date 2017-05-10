@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   def logged_in?
     current_user != nil
   end
+
   def current_order
     if !session[:order_id].nil?
       Order.find(session[:order_id])
