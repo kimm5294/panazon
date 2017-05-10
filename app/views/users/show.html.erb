@@ -1,2 +1,49 @@
+<% if @user.id == current_user.id %>
+  <div class="owner-user-page">
+    <h1>Welcome back, <%= @user.username %></h1>
 
-  <strong><%= @user.username %>'s Profile!</strong><br>
+    <div id="past-orders-section">
+      <h3 id="past-orders-header">Past Orders</h3>
+
+      <ul id="past-orders-list">
+        <% @user.purchases.each do |purchase| %>
+          <li>
+            Items Purchased: <%= purchase.item.name %>
+            <br>
+            Order made on <%= purchase.created_at.to_date %>
+            <br>
+            Quantity: <%= purchase.item.count %>
+            <br>
+            Price: $<%= purchase.item.price %>
+          </li>
+        <% end %>
+      </ul>
+
+    </div>
+  </div>
+<% elsif logged_in? && current_user != @user %>
+<%#change logged_in? to check if they're friends %>
+  <div class="current-user-page">
+    <h1>This is the profile page of <%= @user.username %></h1>
+
+    <div id="past-orders-section">
+      <h3 id="past-orders-header">Past Orders</h3>
+
+      <ul id="past-orders-list">
+        <% @user.purchases.each do |purchase| %>
+          <li>
+            Items Purchased: <%= purchase.item.name %>
+            <br>
+            Order made on <%= purchase.created_at.to_date %>
+            <br>
+            Quantity: <%= purchase.item.count %>
+            <br>
+            Price: $<%= purchase.item.price %>
+          </li>
+        <% end %>
+      </ul>
+
+    </div>
+  </div>
+<% end %>
+
