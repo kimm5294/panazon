@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_secure_password
   validates :username, :email, presence: true, uniqueness: true
   validates :password, length: { minimum: 6 }
+  validates_confirmation_of :password
 
   has_many :connections_as_friender, class_name: "Connection", foreign_key: "friender_id"
   has_many :connections_as_friendee, class_name: "Connection", foreign_key: "friendee_id"
