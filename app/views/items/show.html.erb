@@ -1,0 +1,19 @@
+<h1><%= @item.name %></h1>
+
+<div class="item-description">
+  <h3>Description</h3>
+  <p><%= @item.description %></p>
+</div>
+
+<div class="item-price">
+  <h4>Price:</h4><span>$<%= number_with_precision(@item.price, precision: 2) %></span>
+</div>
+
+<% if @item.quantity <= 10 %>
+  <div class="item-quantity">
+    <h4><%= @item.quantity %> items left</h4>
+  </div>
+<% end %>
+<div id="seller">
+  <span>sold by <%= link_to @item.seller.username, user_path(@item.seller) %></span>
+</div>
