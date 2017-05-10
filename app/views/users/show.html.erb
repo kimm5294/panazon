@@ -1,20 +1,26 @@
-<h1>Welcome back, <%= @user.username %></h1>
+<% if @user.id == current_user.id %>
+  <div class="current-user-page">
+    <h1>Welcome back, <%= @user.username %></h1>
 
-<div id="past-orders-section">
-  <h3 id="past-orders-header">Past Orders</h3>
+    <div id="past-orders-section">
+      <h3 id="past-orders-header">Past Orders</h3>
 
-  <ul id="past-orders-list">
-    <% @user.purchased_items.each do |item| %>
-      <li>
-        Items Purchased: <%= item.name %>
-        <br>
-        Order made on <%= item.created_at %>
-        <br>
-        Quantity: <%= item.count %>
-        <br>
-        Price: $<%= item.price %>
-      </li>
-    <% end %>
-  </ul>
+      <ul id="past-orders-list">
+        <% @user.purchased_items.each do |item| %>
+          <li>
+            Items Purchased: <%= item.name %>
+            <br>
+            Order made on <%= item.created_at %>
+            <br>
+            Quantity: <%= item.count %>
+            <br>
+            Price: $<%= item.price %>
+          </li>
+        <% end %>
+      </ul>
 
-</div>
+    </div>
+  </div>
+<% else %>
+
+<% end %>
