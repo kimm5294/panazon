@@ -12,12 +12,9 @@
     <% if logged_in? %>
       <%= link_to "Log out", session_path(current_user), method: :delete %> |
       <%= link_to "Profile", user_path(current_user) %> |
-      <a href="/posts/new">New Post</a> |
-      <a href="/posts">All the Posts</a> |
     <% else %>
       <%= link_to "Log In", new_session_path %> |
       <%= link_to "Register", new_user_path %> |
-      <a href="/posts">All the Posts</a> |
     <% end %>
       <a href="/">Home</a>
 
