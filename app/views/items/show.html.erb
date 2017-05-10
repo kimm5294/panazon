@@ -6,12 +6,16 @@
 </div>
 
 <div class="item-price">
-  <h4>Price:</h4><span>$<%= number_with_precision(@item.price, precision: 2) %></span>
+  <h4>Price:</h4><span>$<%= number_with_precision(@item.price_in_dollars, precision: 2) %></span>
 </div>
 
-<% if @item.quantity <= 10 %>
-  <div class="item-quantity">
-    <h4><%= @item.quantity %> items left</h4>
+<% if @item.count <= 10 %>
+  <div class="item-count">
+    <% if @item.count > 0 %>
+      <h4><%= pluralize(@item.count, 'item') %> left</h4>
+    <% else %>
+      <h4>SOLD OUT</h4>
+    <% end %>
   </div>
 <% end %>
 <div id="seller">
