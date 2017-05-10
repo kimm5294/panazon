@@ -1,7 +1,9 @@
 <h1><%= @category.name %></h1>
 
-<ul>
-  <% @category.items.order(:updated_at).each do |item| %>
-    <li><%= item.name %></li>
-  <% end %>
-</ul>
+<div id="category-items">
+  <ul>
+    <% @category.items.order(:updated_at).each do |item| %>
+      <li><%= link_to item.name, category_item_path(item) %></li>
+    <% end %>
+  </ul>
+</div>
