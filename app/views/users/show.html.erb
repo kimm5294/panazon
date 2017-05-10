@@ -57,6 +57,18 @@
       </ul>
     </div>
 
+    <div class="upload-csv">
+      <h3>Sell more items!</h3>
+      <p>Upload a CSV with a list of items that you would like to sell.</p>
+      <p>Please be sure to include the following categories: name, description, unit, price (in cents), categories, and count.</p>
+      <p>Please also be sure to separate an item's categories with a semicolon (no space).</p>
+      <p><a href="/csv_example">Here</a> is a good example.</p>
+      <%= form_tag import_items_path, multipart: true do %>
+      <%= file_field_tag :file %>
+      <%= submit_tag "Import CSV" %>
+      <% end %>
+    </div>
+
   </div>
 <% elsif logged_in? && current_user != @user %>
 <%#change logged_in? to check if they're friends %>
@@ -83,4 +95,3 @@
     </div>
   </div>
 <% end %>
-
