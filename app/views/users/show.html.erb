@@ -14,12 +14,49 @@
             <br>
             Quantity: <%= purchase.item.count %>
             <br>
-            Price: $<%= purchase.item.price %>
+            Price: $<%= number_with_precision(purchase.item.price_in_dollars, precision: 2) %>
           </li>
+          <br>
         <% end %>
       </ul>
-
     </div>
+
+    <div id="sold-items-section">
+      <h3>Sold Items</h3>
+      <ul id="sold-items-list">
+        <% @user.sales.each do |sale| %>
+          <li>
+            Items Sold: <%= sale.item.name %>
+            <br>
+            Order made on <%= sale.created_at.to_date %>
+            <br>
+            Quantity: <%= sale.item.count %>
+            <br>
+            Price: $<%= number_with_precision(sale.item.price_in_dollars, precision: 2) %>
+          </li>
+          <br>
+        <% end %>
+      </ul>
+    </div>
+
+    <div id="unsold-items-section">
+      <h3>Unsold Items</h3>
+      <ul id="unsold-items-list">
+        <% @user.items_for_sale.where("count>'0'").each do |item| %>
+          <li>
+            Unsold Item: <%= item.name %>
+            <br>
+            Order made on <%= item.created_at.to_date %>
+            <br>
+            Quantity: <%= item.count %>
+            <br>
+            Price: $<%= number_with_precision(item.price_in_dollars, precision: 2) %>
+          </li>
+          <br>
+        <% end %>
+      </ul>
+    </div>
+
   </div>
 <% elsif logged_in? && current_user != @user %>
 <%#change logged_in? to check if they're friends %>
