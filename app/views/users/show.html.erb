@@ -59,6 +59,7 @@
 
   </div>
 <% elsif logged_in? && current_user != @user %>
+<%#change logged_in? to check if they're friends %>
   <div class="current-user-page">
     <h1>This is the profile page of <%= @user.username %></h1>
 
