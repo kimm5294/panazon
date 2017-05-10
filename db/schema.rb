@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510153143) do
+ActiveRecord::Schema.define(version: 20170510161826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_categories_on_name", unique: true
+  end
+
+  create_table "categories_items", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_categories_items_on_category_id"
+    t.index ["item_id"], name: "index_categories_items_on_item_id"
+  end
 
   create_table "connections", force: :cascade do |t|
     t.bigint "friender_id", null: false
@@ -22,6 +38,15 @@ ActiveRecord::Schema.define(version: 20170510153143) do
     t.datetime "updated_at", null: false
     t.index ["friendee_id"], name: "index_connections_on_friendee_id"
     t.index ["friender_id"], name: "index_connections_on_friender_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description", null: false
+    t.float "price", null: false
+    t.integer "quantity", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
