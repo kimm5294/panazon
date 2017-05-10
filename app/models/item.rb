@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  validates :name, :description, :price, :quantity, :seller_id, presence: true
+  validates :name, :description, :price, :count, :seller_id, :unit, presence: true
 
   has_many :categories_items
   has_many :categories, through: :categories_items
