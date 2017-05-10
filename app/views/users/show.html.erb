@@ -1,0 +1,16 @@
+<h1>Welcome back, <%= @user.username %></h1>
+
+<div id="past-orders-section">
+  <h3 id="past-orders-header">Past Orders</h3>
+
+  <ul id="past-orders-list">
+    <% @user.sales.each do |sale| %>
+      <li>
+        Order made on <%= order.created_at %>
+        <br>
+        Item Purchased: <%= order. %>
+      </li>
+    <% end %>
+  </ul>
+
+</div>
