@@ -3,7 +3,7 @@
 <div id="category-items">
   <ul>
     <% @category.items.order(:updated_at).each do |item| %>
-      <li><%= link_to item.name, category_item_path(item) %></li>
+      <li><%= link_to item.name, category_item_path(@category, item) %></li><br>
     <% end %>
   </ul>
 </div>
