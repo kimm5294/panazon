@@ -17,8 +17,7 @@ class Item < ApplicationRecord
       categories = row.delete("categories")
 
       item = Item.new row.to_hash
-      item.seller_id = 1
-      # THIS MUST BE UPDATED TO CURRENT USER
+      item.seller_id = session[:user_id]
       item.save
       categories.split(";").each do |category|
         item_category = Category.find_by(name: category)
