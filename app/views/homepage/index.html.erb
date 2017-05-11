@@ -1,6 +1,7 @@
 <div id="homepage-container">
   <div id="categorylist-left-column">
-    <h3 align="center">Departments</h3>
+    <h2 align="center">Departments</h2>
+    <hr>
     <ul class='cat-list'>
       <% @categories.each do |category| %>
         <li><%= link_to category.name, category_path(category) %></li>
@@ -9,14 +10,26 @@
   </div>
 
   <div id="itemslist-center-column">
-    <h3 align="center">Popular Items</h3>
-    <% @items.each do |item| %>
-      <li><%= link_to item.name, item_path(item) %></li>
-        <li><%= item.description %></li>
-    <% end %>
+    <h2 align="center">Popular Items</h2>
+    <hr>
+    <ul class='item-list'>
+      <% @items.each do |item| %>
+        <p>
+          <%= link_to item.name%>
+          <%= item.description %>
+          (Price $<%= item.price %>.00)
+          </p>
+      <% end %>
+    </ul>
   </div>
 
   <div id="friendfeed-right-column">
-    <h3 align="center">What Your Friends Are Buying</h3>
+    <h2 align="center">What Your Friends Are Buying</h2>
+    <hr>
+  </div>
+
+  <div class="footer">
+
+
   </div>
 </div>
