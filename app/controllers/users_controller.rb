@@ -4,11 +4,9 @@ class UsersController < ApplicationController
   end
 
   def new
-    # @user = User.new
   end
 
   def create
-    # render plain: user_params.inspect
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
@@ -21,6 +19,10 @@ class UsersController < ApplicationController
 
   def cart
     @cart = current_user.cart
+  end
+
+  def friends
+    @user = User.find_by(id: params[:user_id])
   end
 
   private
