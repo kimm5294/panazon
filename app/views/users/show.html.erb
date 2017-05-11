@@ -57,6 +57,9 @@
                 Quantity: <%= item.count %>
                 <br>
                 Price: $<%= number_with_precision(item.price_in_dollars, precision: 2) %>
+                <br>
+                <%= link_to 'Remove item', item_path(item, user_id: @user.id),
+                    method: :delete %>
               </td>
             </tr>
           <% end %>
