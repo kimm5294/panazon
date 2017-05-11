@@ -1,7 +1,11 @@
 <% if logged_in? %>
   <% if @user.id == current_user.id %>
     <div class="owner-user-page">
-      <h1>Welcome back, <%= @user.username %></h1>
+      <% if !!@user.first_name %>
+        <h1>Welcome back, <%= @user.first_name %></h1>
+      <% else %>
+        <h1>Welcome back!</h1>
+      <% end %>
 
       <%= render 'users/friends_feed' %>
 
