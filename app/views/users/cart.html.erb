@@ -9,7 +9,7 @@
         <%= f.hidden_field :buyer_id, value: current_user.id %>
         <%= f.hidden_field :item_id, value: cart_item.item.id %>
         <%= f.label :quantity %>
-        <%= f.select :quantity, (1..cart_item.item.count), {}, {id: "update-quantity", selected: cart_item.quantity} %><br><br>
+        <%= f.select :quantity, (1..cart_item.item.count), selected: cart_item.quantity %><br><br>
         <%= f.submit "Update Quantity" %>
       <% end %>
     </p><br style="clear:both;">
