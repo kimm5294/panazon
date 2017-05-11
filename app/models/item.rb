@@ -10,9 +10,6 @@ class Item < ApplicationRecord
   has_many :buyers, through: :transactions
 
   def self.import(file, user_id)
-    # csv_array = CSV.read(file)
-    # csv_array.map { |row| row.to_hash }
-
     CSV.foreach(file, headers: true) do |row|
       categories = row.delete("categories")[1]
 
@@ -29,5 +26,9 @@ class Item < ApplicationRecord
 
   def price_in_dollars
     self.price.to_f / 100
+  end
+
+  def self.spotlight
+    Item.all.sample(5)
   end
 end
