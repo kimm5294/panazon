@@ -30,6 +30,10 @@ h2 {
   font-size: 24px;
 }
 
+li {
+  list-style: none;
+}
+
  /*#nav-container{
    width: 100%;
 ;
