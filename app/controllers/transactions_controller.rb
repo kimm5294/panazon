@@ -11,6 +11,12 @@ class TransactionsController < ApplicationController
     redirect_to "/users/#{current_user.id}/cart"
   end
 
+  def update
+    @transaction = Transaction.find_by(id: params[:id])
+    @transaction.update_attributes(transaction_params)
+    redirect_to "/users/#{current_user.id}/cart"
+  end
+
   private
     def transaction_params
       params.require(:transaction).permit(:buyer_id, :item_id, :quantity)
