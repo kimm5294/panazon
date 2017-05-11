@@ -58,4 +58,10 @@ class User < ApplicationRecord
       sale.item.decrement!(:count, by = sale.quantity)
     end
   end
+
+  def clear_cart
+    self.cart.map do |sale|
+      sale.destroy
+    end
+  end
 end

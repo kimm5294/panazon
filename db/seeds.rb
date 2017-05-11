@@ -18,10 +18,12 @@ Category.create!(name: "Food")
 
 User.create(username: "gbrar", email: 'gbrar@example.com', password: 'nanunanu')
 
-Item.create(name: "Dr. No", description: "James Bond", price: 5, seller_id: 1, unit: "Bond Collection", count: 8)
-Item.create(name: "Goldfinger", description: "James Bond", price: 5, seller_id: 1, unit: "Bond Collection", count: 8)
-Item.create(name: "World is Not Enough", description: "James Bond", price: 5, seller_id: 1, unit: "Bond Collection", count: 8)
-Item.create(name: "Man With the Golden Gun", description: "James Bond", price: 5, seller_id: 1, unit: "Bond Collection", count: 8)
-Item.create(name: "Moonraker", description: "James Bond", price: 5, seller_id: 1, unit: "Bond Collection", count: 8)
-Item.create(name: "Diamonds are Forever", description: "James Bond", price: 5, seller_id: 1, unit: "Bond Collection", count: 8)
-Item.create(name: "Spectre", description: "James Bond", price: 5, seller_id: 1, unit: "Bond Collection", count: 8)
+
+
+CategoriesItem.create(category_id: 6, item: Item.create(name: "Dr. No", description: "James Bond", price: 5, seller_id: 1, unit: "Bond Collection", count: 8))
+CategoriesItem.create(category_id: 6, item: Item.create(name: "World is Not Enough", description: "James Bond", price: 5, seller_id: 1, unit: "Bond Collection", count: 8))
+CategoriesItem.create(category_id: 6, item: Item.create(name: "Man With the Golden Gun", description: "James Bond", price: 5, seller_id: 1, unit: "Bond Collection", count: 8))
+CategoriesItem.create(category_id: 6, item: Item.create(name: "Moonraker", description: "James Bond", price: 5, seller_id: 1, unit: "Bond Collection", count: 8))
+CategoriesItem.create(category_id: 6, item: Item.create(name: "Diamonds are Forever", description: "James Bond", price: 5, seller_id: 1, unit: "Bond Collection", count: 8))
+CategoriesItem.create(category_id: 6, item: Item.create(name: "Spectre", description: "James Bond", price: 5, seller_id: 1, unit: "Bond Collection", count: 8))
+CategoriesItem.create(category_id: 6, item: Item.create(name: "Goldfinger", description: "James Bond", price: 5, seller_id: 1, unit: "Bond Collection", count: 8))
