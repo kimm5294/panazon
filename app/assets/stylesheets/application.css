@@ -25,7 +25,7 @@
     padding: 0;
     overflow: hidden;
     border: 1px solid #e7e7e7;
-    background-color: #f3f3f3;
+    background-color: #ffcc99;
 }
 
 li.nav-li-link {
@@ -82,7 +82,13 @@ form {
   border: 2px solid black;
 }
 
+h2#homepage-column-headers{
+  align: center;
+  font-weight: underlined;
+}
+
 #categorylist-left-column{
+  background-color: #ffcc99;
   margin: 1%
   width: 25%;
   height: inherit;
@@ -101,6 +107,7 @@ form {
 }
 
 #friendfeed-right-column{
+  background-color: #ffcc99;
   width: 20%;
   height: inherit;
   border: 2px solid black;
@@ -108,7 +115,7 @@ form {
   float: left;
 }
 
-ul .cat-list{
+ul.cat-list{
   list-style-type: none;
   margin: 0;
   padding: 0;
