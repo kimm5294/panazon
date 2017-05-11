@@ -26,6 +26,20 @@ class User < ApplicationRecord
     self.purchases.where("purchased = 'true'")
   end
 
+  def is_friends_with?(friendee)
+    !!connection(friendee)
+  end
+
+  def connection(friendee)
+    if !!Connection.find_by(friender_id: self.id, friendee_id: friendee.id)
+      return Connection.find_by(friender_id: self.id, friendee_id: friendee.id)
+    elsif !!Connection.find_by(friender_id: friendee.id, friendee_id: self.id)
+      return Connection.find_by(friender_id: friendee.id, friendee_id: self.id)
+    else
+      return nil
+    end
+  end
+
   def sold_items
     self.sales.where("purchased = 'true'")
   end
