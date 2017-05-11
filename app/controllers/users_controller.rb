@@ -25,6 +25,12 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:user_id])
   end
 
+  def checkout
+    @user = current_user
+    @user.checkout
+    redirect_to '/'
+  end
+
   private
     def user_params
       params.require(:user).permit(:username, :email, :password, :password_confirmation)
