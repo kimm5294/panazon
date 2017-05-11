@@ -8,7 +8,7 @@
     <%= link_to 'Remove', user_transaction_path(current_user, cart_item), method: :delete %>
   <% end %>
   <br>
-  <%= form_tag("/", method: "post") do %>
+  <%= form_tag("/users/#{current_user.id}/checkout", method: "post") do %>
     <%= submit_tag ("Checkout") %>
   <% end %>
 </div>
