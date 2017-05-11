@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
+  root 'homepage#index'
+
 
   resources :categories, only: [:index, :show] do
     resources :items, except: [:index]
   end
+
+
+  resources :users
 
   post 'import/items' => 'items#import' do
     collection { post :import }
@@ -12,6 +17,7 @@ Rails.application.routes.draw do
     resources :transactions, only: [:destroy, :create]
   end
   get "/users/:id/cart" => "users#cart"
+
   resources :sessions, only: [:new, :create, :destroy]
   root 'sessions#new'
 
