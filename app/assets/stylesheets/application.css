@@ -48,6 +48,10 @@ h3 {
   padding-bottom: 20px;
 }
 
+li {
+  list-style: none;
+}
+
  /*#nav-container{
    width: 100%;
 ;
