@@ -24,7 +24,7 @@
     <div id="sold-items-section">
       <h3>Sold Items</h3>
       <table id="unsold-items-list">
-        <% @user.sales.each do |sale| %>
+        <% @user.sold_items.each do |sale| %>
           <tr>
             <td>
               <%= sale.item.name %>

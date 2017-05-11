@@ -25,4 +25,8 @@ class User < ApplicationRecord
   def past_orders
     self.purchases.where("purchased = 'true'")
   end
+
+  def sold_items
+    self.sales.where("purchased = 'true'")
+  end
 end
