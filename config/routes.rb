@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     collection { post :import }
   end
 
-  resources :users
+  resources :users do
+    resources :transactions, only: [:destroy]
+  end
   get "/users/:id/cart" => "users#cart"
   resources :sessions, only: [:new, :create, :destroy]
   root 'sessions#new'
