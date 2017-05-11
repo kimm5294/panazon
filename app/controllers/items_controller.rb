@@ -13,4 +13,11 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find_by(id: params[:id])
   end
+
+  def destroy
+    @user = User.find_by(id: params[:user_id])
+    item = Item.find_by(id: params[:id])
+    item.destroy
+    redirect_to @user
+  end
 end
