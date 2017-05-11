@@ -51,4 +51,11 @@ class User < ApplicationRecord
   def sold_items
     self.sales.where("purchased = 'true'")
   end
+
+  def checkout
+    self.cart.map do  |sale|
+      sale.purchased = true
+      sale.item.count -= sale.quantity
+    end
+  end
 end
