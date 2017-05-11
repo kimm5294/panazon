@@ -18,6 +18,14 @@ class User < ApplicationRecord
     self.frienders + self.friendees
   end
 
+  def five_friends
+    if self.friends.length >= 5
+      self.friends.sample(5)
+    else
+      self.friends.sample(self.friends.length)
+    end
+  end
+
   def cart
     self.purchases.where("purchased = 'false'")
   end
