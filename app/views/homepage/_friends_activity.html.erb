@@ -1,0 +1,18 @@
+<% if logged_in? %>
+  <table id="friends_activities_feed">
+    <% current_user.friends_activities_feed.each do |activity| %>
+      <tr>
+        <td>
+          <p><%= time_ago_in_words(activity.updated_at) %> ago...</p>
+        </td>
+        <td>
+          <% if current_user.is_friends_with?(activity.buyer) %>
+            <p><%= activity.buyer.username %> bought <%= pluralize(activity.quantity, activity.item.name) %></p>
+          <% else %>
+            <p><%= activity.seller.username %> sold <%= pluralize(activity.quantity, activity.item.name) %></p>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

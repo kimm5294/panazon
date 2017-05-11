@@ -58,4 +58,33 @@ class User < ApplicationRecord
       sale.item.decrement!(:count, by = sale.quantity)
     end
   end
+
+  def friends_activities_feed
+    self.friends_activities.sort_by { |activity| activity.created_at }.reverse.take(10)
+  end
+
+  def friends_activities
+    activities_with_duplicates = self.friends_purchases + self.friends_sales
+    activities_with_duplicates.uniq
+  end
+
+  def friends_purchases
+    friends_purchases = []
+    self.friends.each do |friend|
+      friend.purchases.each do |purchase|
+        friends_purchases << purchase
+      end
+    end
+    friends_purchases
+  end
+
+  def friends_sales
+    friends_sales = []
+    self.friends.each do |friend|
+      friend.sales.each do |sale|
+        friends_sales << sale
+      end
+    end
+    friends_sales
+  end
 end
