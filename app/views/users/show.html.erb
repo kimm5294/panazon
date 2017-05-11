@@ -7,7 +7,7 @@
 
       <div id="past-orders-section">
         <h3 id="past-orders-header">Past Orders</h3>
-        <table id="unsold-items-list">
+        <table id="past-orders-list">
           <% @user.past_orders.each do |purchase| %>
             <tr>
               <td>
@@ -26,7 +26,7 @@
 
       <div id="sold-items-section">
         <h3>Sold Items</h3>
-        <table id="unsold-items-list">
+        <table id="sold-items-list">
           <% @user.sold_items.each do |sale| %>
             <tr>
               <td>
@@ -87,7 +87,7 @@
 
         <div id="past-orders-section">
           <h3 id="past-orders-header">Past Orders</h3>
-          <table id="unsold-items-list">
+          <table id="past-orders-list">
             <% @user.past_orders.each do |purchase| %>
               <tr>
                 <td>
