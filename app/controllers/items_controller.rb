@@ -1,8 +1,13 @@
 class ItemsController < ApplicationController
   def import
-    Item.import(params[:file].path, session[:user_id])
-
-    redirect_to root_path
+    @user = User.find_by(id: session[:user_id])
+    if !!params[:file]
+      Item.import(params[:file].path, session[:user_id])
+      redirect_to @user
+    else
+      @errors = ["Please choose a CSV file to import"]
+      render 'users/show'
+    end
   end
 
   def show
