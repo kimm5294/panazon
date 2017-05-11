@@ -26,13 +26,26 @@
   background-color: #F5F5F5;
 }
 
+h1 {
+  font-size: 30px;
+}
+
 h2 {
-  font-size: 24px;
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 15px;
+  margin: 0px;
 }
 
 #profile-page {
   padding-left: 30px;
   padding-right: 30px;
+}
+
+.profile-items {
+  padding-bottom: 20px;
 }
 
  /*#nav-container{
