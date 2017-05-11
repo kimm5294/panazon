@@ -49,6 +49,10 @@ li a.active {
     background-color: #4CAF50;
 }
 
+ul.error_messages {
+  color: red;
+}
+
 form {
   float:left;
   width:500px;
