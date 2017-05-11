@@ -17,4 +17,12 @@ class User < ApplicationRecord
   def friends
     self.frienders + self.friendees
   end
+
+  def cart
+    self.purchases.where("purchased = 'false'")
+  end
+
+  def past_orders
+    self.purchases.where("purchased = 'true'")
+  end
 end

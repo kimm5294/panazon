@@ -1,0 +1,9 @@
+<h1>Cart</h1>
+
+<div class="cart-items">
+  <% @cart.each do |cart_item| %>
+    <h3><%= cart_item.item.name %></h3>
+    <p>Price: <%= cart_item.item.price * cart_item.quantity %></p>
+    <p>Quantity: <%= cart_item.quantity %></p>
+  <% end %>
+</div>

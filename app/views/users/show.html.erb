@@ -49,7 +49,7 @@
             <td>
               <%= item.name %>
               <br>
-              Order made on <%= item.created_at.to_date %>
+              Listed on <%= item.created_at.to_date %>
               <br>
               Quantity: <%= item.count %>
               <br>
@@ -91,7 +91,7 @@
               Quantity: <%= purchase.item.count %>
               <br>
               Price: $<%= purchase.item.price %>
-            </td>  
+            </td>
           </tr>
         <% end %>
       </table>

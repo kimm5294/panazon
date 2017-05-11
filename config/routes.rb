@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :users
+  get "/users/:id/cart" => "users#cart"
   resources :sessions, only: [:new, :create, :destroy]
   root 'sessions#new'
 
