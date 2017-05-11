@@ -1,0 +1,10 @@
+<h1>Cart</h1>
+
+<div class="cart-items">
+  <% @cart.each do |cart_item| %>
+    <h3><%= cart_item.item.name %></h3>
+    <p>Price: $ <%= number_with_precision((cart_item.item.price_in_dollars * cart_item.quantity), precision: 2) %></p>
+    <p>Quantity: <%= cart_item.quantity %></p>
+    <%= link_to 'Remove', user_transaction_path(current_user, cart_item), method: :delete %>
+  <% end %>
+</div>

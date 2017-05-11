@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-
-
   def show
     @user = User.find_by(id: params[:id])
   end
@@ -19,7 +17,10 @@ class UsersController < ApplicationController
       @errors = @user.errors.full_messages
       render 'new'
     end
+  end
 
+  def cart
+    @cart = current_user.cart
   end
 
   private

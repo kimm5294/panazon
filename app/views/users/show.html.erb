@@ -4,57 +4,72 @@
 
     <div id="past-orders-section">
       <h3 id="past-orders-header">Past Orders</h3>
-
-      <ul id="past-orders-list">
-        <% @user.purchases.each do |purchase| %>
-          <li>
-            Items Purchased: <%= purchase.item.name %>
-            <br>
-            Order made on <%= purchase.created_at.to_date %>
-            <br>
-            Quantity: <%= purchase.item.count %>
-            <br>
-            Price: $<%= number_with_precision(purchase.item.price_in_dollars, precision: 2) %>
-          </li>
-          <br>
+      <table id="unsold-items-list">
+        <% @user.past_orders.each do |purchase| %>
+          <tr>
+            <td>
+              <%= purchase.item.name %>
+              <br>
+              Order made on <%= purchase.created_at.to_date %>
+              <br>
+              Quantity: <%= purchase.item.count %>
+              <br>
+              Price: $<%= number_with_precision(purchase.item.price_in_dollars, precision: 2) %>
+            </td>
+          </tr>
         <% end %>
-      </ul>
+      </table>
     </div>
 
     <div id="sold-items-section">
       <h3>Sold Items</h3>
-      <ul id="sold-items-list">
+      <table id="unsold-items-list">
         <% @user.sales.each do |sale| %>
-          <li>
-            Items Sold: <%= sale.item.name %>
-            <br>
-            Order made on <%= sale.created_at.to_date %>
-            <br>
-            Quantity: <%= sale.item.count %>
-            <br>
-            Price: $<%= number_with_precision(sale.item.price_in_dollars, precision: 2) %>
-          </li>
+          <tr>
+            <td>
+              <%= sale.item.name %>
+              <br>
+              Order made on <%= sale.created_at.to_date %>
+              <br>
+              Quantity: <%= sale.item.count %>
+              <br>
+              Price: $<%= number_with_precision(sale.item.price_in_dollars, precision: 2) %>
+            </td>
+          </tr>
           <br>
         <% end %>
-      </ul>
+      </table>
     </div>
 
     <div id="unsold-items-section">
       <h3>Unsold Items</h3>
-      <ul id="unsold-items-list">
+      <table id="unsold-items-list">
         <% @user.items_for_sale.where("count>'0'").each do |item| %>
-          <li>
-            Unsold Item: <%= item.name %>
-            <br>
-            Order made on <%= item.created_at.to_date %>
-            <br>
-            Quantity: <%= item.count %>
-            <br>
-            Price: $<%= number_with_precision(item.price_in_dollars, precision: 2) %>
-          </li>
-          <br>
+          <tr>
+            <td>
+              <%= item.name %>
+              <br>
+              Listed on <%= item.created_at.to_date %>
+              <br>
+              Quantity: <%= item.count %>
+              <br>
+              Price: $<%= number_with_precision(item.price_in_dollars, precision: 2) %>
+            </td>
+          </tr>
         <% end %>
-      </ul>
+      </table>
+    </div>
+
+    <div class="upload-csv">
+      <h3>Sell more items!</h3>
+      <p>Upload a CSV with a list of items that you would like to sell.</p>
+      <p>Please be sure to include the following categories: name, description, unit, price (in cents), categories, and count.</p>
+      <p>Please also be sure to separate an item's categories with a semicolon (no space).</p>
+      <p><a href="/csv_example">Here</a> is a good example.</p>
+      <%= form_tag import_items_path, multipart: true do %>
+      <%= file_field_tag :file %>
+      <%= submit_tag "Import CSV" %>
+      <% end %>
     </div>
 
   </div>
@@ -65,22 +80,22 @@
 
     <div id="past-orders-section">
       <h3 id="past-orders-header">Past Orders</h3>
-
-      <ul id="past-orders-list">
-        <% @user.purchases.each do |purchase| %>
-          <li>
-            Items Purchased: <%= purchase.item.name %>
-            <br>
-            Order made on <%= purchase.created_at.to_date %>
-            <br>
-            Quantity: <%= purchase.item.count %>
-            <br>
-            Price: $<%= purchase.item.price %>
-          </li>
+      <table id="unsold-items-list">
+        <% @user.past_orders.each do |purchase| %>
+          <tr>
+            <td>
+              Items Purchased: <%= purchase.item.name %>
+              <br>
+              Order made on <%= purchase.created_at.to_date %>
+              <br>
+              Quantity: <%= purchase.item.count %>
+              <br>
+              Price: $<%= purchase.item.price %>
+            </td>
+          </tr>
         <% end %>
-      </ul>
+      </table>
 
     </div>
   </div>
 <% end %>
-
