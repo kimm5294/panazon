@@ -53,9 +53,9 @@ class User < ApplicationRecord
   end
 
   def checkout
-    self.cart.map do  |sale|
-      sale.purchased = true
-      sale.item.count -= sale.quantity
+    self.cart.map do |sale|
+      sale.update_attributes(purchased: true)
+      sale.item.decrement!(:count, by = sale.quantity)
     end
   end
 end
