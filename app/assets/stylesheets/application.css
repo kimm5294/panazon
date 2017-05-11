@@ -16,10 +16,14 @@
  /*****************HOMEPAGE STYLING**********************/
 
  /*****************NAV BAR**********************/
- #nav-container{
+ /*#nav-container{
    width: 100%;
 ;
  }
+
+nav.navbar navbar-default {
+  background-color: #ffcc99;
+}
 
  ul.nav {
     list-style-type: none;
@@ -76,7 +80,7 @@ form {
 .button:hover  {
   background-color:#fafafa;
   color:#207cca;
-}
+}*/
  /*****************NAV BAR**********************/
 
  /*****************Homepage**********************/

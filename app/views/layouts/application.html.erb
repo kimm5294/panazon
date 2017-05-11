@@ -16,40 +16,25 @@
       <nav class="navbar navbar-default">
         <div class="container-fluid">
           <div class="navbar-header">
-            <li class="nav-li-link"><a href="/"><%= image_tag("panazon.jpg", size: "200x45") %></a></li>
-            <% if logged_in? %>
-              <li class="nav-li-link"><%= link_to "Log out", session_path(current_user), method: :delete %></li>
-              <li class="nav-li-link"><%= link_to "Profile", user_path(current_user) %></li>
-            <% else %>
-              <li class="nav-li-link"><%= link_to "Log In", new_session_path %></li>
-              <li class="nav-li-link"><%= link_to "Register", new_user_path %></li>
-            <% end %>
+            <a href="/"><%= image_tag("panazon.jpg", size: "200x45") %></a>
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <form class="navbar-form navbar-left">
+            <form class="navbar-form navbar-left" method="GET" action="/search">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
+                <input type="text" name="name" class="form-control" placeholder="Search">
               </div>
               <button type="submit" class="btn btn-default">Submit</button>
             </form>
+            <ul class="nav navbar-nav navbar-right">
+              <% if logged_in? %>
+                <li><%= link_to "Log out", session_path(current_user), method: :delete %></li>
+                <li><%= link_to "Profile", user_path(current_user) %></li>
+              <% else %>
+                <li><%= link_to "Log In", new_session_path %></li>
+                <li><%= link_to "Register", new_user_path %></li>
+              <% end %>
+            </ul>
           </div>
-          <ul class="nav navbar-nav navbar-right">
-
-            <li class="nav-li-link"><a href="/">Home</a></li>
-            <% if logged_in? %>
-              <li class="nav-li-link"><%= link_to "Log out", session_path(current_user), method: :delete %></li>
-              <li class="nav-li-link"><%= link_to "Profile", user_path(current_user) %></li>
-            <% else %>
-              <li class="nav-li-link"><%= link_to "Log In", new_session_path %></li>
-              <li class="nav-li-link"><%= link_to "Register", new_user_path %></li>
-            <% end %>
-
-            <%= form_tag("/search", method: "get") do %>
-              <%= text_field_tag(:name) %>
-              <%= submit_tag("Search") %>
-            <% end %>
-
-          </ul>
         </div>
       </nav>
     </div>
