@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
   root 'homepage#index'
 
-  resources :categories, only: [:index, :show] do
-    resources :items, except: [:index]
-  end
+  resources :categories, only: [:index, :show]
   resources :connections, only: [:create, :destroy]
+  resources :items, except: [:index]
   resources :sessions, only: [:new, :create, :destroy]
   resources :users do
     resources :transactions, only: [:destroy, :create]
