@@ -78,24 +78,33 @@
   <div class="current-user-page">
     <h1>This is the profile page of <%= @user.username %></h1>
 
-    <div id="past-orders-section">
-      <h3 id="past-orders-header">Past Orders</h3>
-      <table id="unsold-items-list">
-        <% @user.past_orders.each do |purchase| %>
-          <tr>
-            <td>
-              Items Purchased: <%= purchase.item.name %>
-              <br>
-              Order made on <%= purchase.created_at.to_date %>
-              <br>
-              Quantity: <%= purchase.item.count %>
-              <br>
-              Price: $<%= purchase.item.price %>
-            </td>
-          </tr>
-        <% end %>
-      </table>
+    <% if current_user.is_friends_with?(@user) %>
+      <%= link_to "Unfriend", connection_path(current_user.connection(@user), user_id: @user.id),
+          method: :delete %>
 
-    </div>
+      <div id="past-orders-section">
+        <h3 id="past-orders-header">Past Orders</h3>
+        <table id="unsold-items-list">
+          <% @user.past_orders.each do |purchase| %>
+            <tr>
+              <td>
+                Items Purchased: <%= purchase.item.name %>
+                <br>
+                Order made on <%= purchase.created_at.to_date %>
+                <br>
+                Quantity: <%= purchase.item.count %>
+                <br>
+                Price: $<%= purchase.item.price %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    <% else %>
+      <%= form_for Connection.new do |f| %>
+        <%= hidden_field_tag "connection[friendee_id]", "#{@user.id}" %>
+        <%= submit_tag("Add Friend") %>
+      <% end %>
+    <% end %>
   </div>
 <% end %>

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     collection { post :import }
   end
 
-  resources :connections, only: [:create]
+  resources :connections, only: [:create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
   get "/users/:id/cart" => "users#cart"
