@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :connections, only: [:create]
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
+  get "/users/:id/cart" => "users#cart"
+
   root 'sessions#new'
 
   get '/csv_example' => 'application#csv_example'
