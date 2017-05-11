@@ -16,6 +16,20 @@
  /*****************HOMEPAGE STYLING**********************/
 
  /*****************NAV BAR**********************/
+.navbar-default {
+  padding: 18px;
+  margin-bottom: 0px;
+  background-color: white;
+}
+
+#main {
+  background-color: #eee;
+}
+
+h2 {
+  font-size: 24px;
+}
+
  /*#nav-container{
    width: 100%;
 ;
