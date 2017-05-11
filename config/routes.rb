@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   post 'import/items' => 'items#import' do
     collection { post :import }
   end
+
+  post "/users/:id/checkout" => 'users#checkout'
 end
