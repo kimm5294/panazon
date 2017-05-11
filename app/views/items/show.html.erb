@@ -21,3 +21,13 @@
 <div id="seller">
   <span>sold by <%= link_to @item.seller.username, user_path(@item.seller) %></span>
 </div>
+
+<div id="item-checkout">
+  <%= form_for :transaction, url: "/users/#{current_user.id}/transactions" do |f| %>
+    <%= f.hidden_field :buyer_id, value: current_user.id %>
+    <%= f.hidden_field :item_id, value: @item.id %>
+    <%= f.label :quantity %>
+    <%= f.select :quantity, (1..@item.count) %><br><br>
+    <%= f.submit "Add to Cart" %>
+  <% end %>
+</div>
