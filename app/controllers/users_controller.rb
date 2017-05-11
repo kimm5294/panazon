@@ -31,6 +31,12 @@ class UsersController < ApplicationController
     redirect_to '/'
   end
 
+  def clear_cart
+    @user = current_user
+    @user.clear_cart
+    redirect_to '/'
+  end
+
   private
     def user_params
       params.require(:user).permit(:username, :email, :password, :password_confirmation)
