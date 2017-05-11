@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :items, except: [:index]
   resources :sessions, only: [:new, :create, :destroy]
   resources :users do
-    resources :transactions, only: [:destroy, :create]
+    resources :transactions, only: [:destroy, :create, :update]
     get "/friends" => "users#friends"
   end
 

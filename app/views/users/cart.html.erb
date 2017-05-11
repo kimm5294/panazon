@@ -4,10 +4,18 @@
   <% @cart.each do |cart_item| %>
     <h3><%= cart_item.item.name %></h3>
     <p>Price: $ <%= number_with_precision((cart_item.item.price_in_dollars * cart_item.quantity), precision: 2) %></p>
-    <p>Quantity: <%= cart_item.quantity %></p>
+    <p>
+      <%= form_for :transaction, url: "/users/#{current_user.id}/transactions/#{cart_item.id}", method: :put  do |f| %>
+        <%= f.hidden_field :buyer_id, value: current_user.id %>
+        <%= f.hidden_field :item_id, value: cart_item.item.id %>
+        <%= f.label :quantity %>
+        <%= f.select :quantity, (1..cart_item.item.count), selected: cart_item.quantity %><br><br>
+        <%= f.submit "Update Quantity" %>
+      <% end %>
+    </p><br style="clear:both;">
     <%= link_to 'Remove', user_transaction_path(current_user, cart_item), method: :delete %>
   <% end %>
-  <br>
+  <br><br>
 
   <%= link_to "Clear Cart", "/users/#{current_user.id}/clear_cart", method: :post %>
   <br>
