@@ -1,88 +1,9 @@
-<% if @user.id == current_user.id %>
-  <div class="owner-user-page">
-    <h1>Welcome back, <%= @user.username %></h1>
+<% if logged_in? %>
+  <% if @user.id == current_user.id %>
+    <div class="owner-user-page">
+      <h1>Welcome back, <%= @user.username %></h1>
 
-    <%= render 'friends_feed' %>
-
-    <div id="past-orders-section">
-      <h3 id="past-orders-header">Past Orders</h3>
-      <table id="unsold-items-list">
-        <% @user.past_orders.each do |purchase| %>
-          <tr>
-            <td>
-              <%= purchase.item.name %>
-              <br>
-              Order made on <%= purchase.created_at.to_date %>
-              <br>
-              Quantity: <%= purchase.item.count %>
-              <br>
-              Price: $<%= number_with_precision(purchase.item.price_in_dollars, precision: 2) %>
-            </td>
-          </tr>
-        <% end %>
-      </table>
-    </div>
-
-    <div id="sold-items-section">
-      <h3>Sold Items</h3>
-      <table id="unsold-items-list">
-        <% @user.sold_items.each do |sale| %>
-          <tr>
-            <td>
-              <%= sale.item.name %>
-              <br>
-              Order made on <%= sale.created_at.to_date %>
-              <br>
-              Quantity: <%= sale.item.count %>
-              <br>
-              Price: $<%= number_with_precision(sale.item.price_in_dollars, precision: 2) %>
-            </td>
-          </tr>
-          <br>
-        <% end %>
-      </table>
-    </div>
-
-    <div id="unsold-items-section">
-      <h3>Unsold Items</h3>
-      <table id="unsold-items-list">
-        <% @user.items_for_sale.where("count>'0'").each do |item| %>
-          <tr>
-            <td>
-              <%= item.name %>
-              <br>
-              Listed on <%= item.created_at.to_date %>
-              <br>
-              Quantity: <%= item.count %>
-              <br>
-              Price: $<%= number_with_precision(item.price_in_dollars, precision: 2) %>
-            </td>
-          </tr>
-        <% end %>
-      </table>
-    </div>
-
-    <div class="upload-csv">
-      <h3>Sell more items!</h3>
-      <p>Upload a CSV with a list of items that you would like to sell.</p>
-      <p>Please be sure to include the following categories: name, description, unit, price (in cents), categories, and count.</p>
-      <p>Please also be sure to separate an item's categories with a semicolon (no space).</p>
-      <p><a href="/csv_example">Here</a> is a good example.</p>
-      <%= form_tag import_items_path, multipart: true do %>
-      <%= file_field_tag :file %>
-      <%= submit_tag "Import CSV" %>
-      <% end %>
-    </div>
-
-  </div>
-<% elsif logged_in? && current_user != @user %>
-<%#change logged_in? to check if they're friends %>
-  <div class="current-user-page">
-    <h1>This is the profile page of <%= @user.username %></h1>
-
-    <% if current_user.is_friends_with?(@user) %>
-      <%= link_to "Unfriend", connection_path(current_user.connection(@user), user_id: @user.id),
-          method: :delete %>
+      <%= render 'friends_feed' %>
 
       <div id="past-orders-section">
         <h3 id="past-orders-header">Past Orders</h3>
@@ -90,23 +11,107 @@
           <% @user.past_orders.each do |purchase| %>
             <tr>
               <td>
-                Items Purchased: <%= purchase.item.name %>
+                <%= purchase.item.name %>
                 <br>
                 Order made on <%= purchase.created_at.to_date %>
                 <br>
                 Quantity: <%= purchase.item.count %>
                 <br>
-                Price: $<%= purchase.item.price %>
+                Price: $<%= number_with_precision(purchase.item.price_in_dollars, precision: 2) %>
               </td>
             </tr>
           <% end %>
         </table>
       </div>
-    <% else %>
-      <%= form_for Connection.new do |f| %>
-        <%= hidden_field_tag "connection[friendee_id]", "#{@user.id}" %>
-        <%= submit_tag("Add Friend") %>
+
+      <div id="sold-items-section">
+        <h3>Sold Items</h3>
+        <table id="unsold-items-list">
+          <% @user.sold_items.each do |sale| %>
+            <tr>
+              <td>
+                <%= sale.item.name %>
+                <br>
+                Order made on <%= sale.created_at.to_date %>
+                <br>
+                Quantity: <%= sale.item.count %>
+                <br>
+                Price: $<%= number_with_precision(sale.item.price_in_dollars, precision: 2) %>
+              </td>
+            </tr>
+            <br>
+          <% end %>
+        </table>
+      </div>
+
+      <div id="unsold-items-section">
+        <h3>Unsold Items</h3>
+        <table id="unsold-items-list">
+          <% @user.items_for_sale.where("count>'0'").each do |item| %>
+            <tr>
+              <td>
+                <%= item.name %>
+                <br>
+                Listed on <%= item.created_at.to_date %>
+                <br>
+                Quantity: <%= item.count %>
+                <br>
+                Price: $<%= number_with_precision(item.price_in_dollars, precision: 2) %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+
+      <div class="upload-csv">
+        <h3>Sell more items!</h3>
+        <p>Upload a CSV with a list of items that you would like to sell.</p>
+        <p>Please be sure to include the following categories: name, description, unit, price (in cents), categories, and count.</p>
+        <p>Please also be sure to separate an item's categories with a semicolon (no space).</p>
+        <p><a href="/csv_example">Here</a> is a good example.</p>
+        <%= form_tag import_items_path, multipart: true do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag "Import CSV" %>
+        <% end %>
+      </div>
+
+    </div>
+  <% else %>
+    <div class="current-user-page">
+      <h1>This is the profile page of <%= @user.username %></h1>
+
+      <% if current_user.is_friends_with?(@user) %>
+        <%= link_to "Unfriend", connection_path(current_user.connection(@user), user_id: @user.id),
+            method: :delete %>
+
+        <div id="past-orders-section">
+          <h3 id="past-orders-header">Past Orders</h3>
+          <table id="unsold-items-list">
+            <% @user.past_orders.each do |purchase| %>
+              <tr>
+                <td>
+                  Items Purchased: <%= purchase.item.name %>
+                  <br>
+                  Order made on <%= purchase.created_at.to_date %>
+                  <br>
+                  Quantity: <%= purchase.item.count %>
+                  <br>
+                  Price: $<%= purchase.item.price %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      <% else %>
+        <%= form_for Connection.new do |f| %>
+          <%= hidden_field_tag "connection[friendee_id]", "#{@user.id}" %>
+          <%= submit_tag("Add Friend") %>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
+  <% end %>
+<% else %>
+  <div class="current-user-page">
+    <h1>This is the profile page of <%= @user.username %></h1>
   </div>
 <% end %>
