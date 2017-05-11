@@ -8,8 +8,9 @@ Rails.application.routes.draw do
     collection { post :import }
   end
 
-  resources :users
+  resources :connections, only: [:create]
   resources :sessions, only: [:new, :create, :destroy]
+  resources :users
   root 'sessions#new'
 
   get '/csv_example' => 'application#csv_example'
