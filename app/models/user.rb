@@ -39,4 +39,8 @@ class User < ApplicationRecord
       return nil
     end
   end
+
+  def sold_items
+    self.sales.where("purchased = 'true'")
+  end
 end

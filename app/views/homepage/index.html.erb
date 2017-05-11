@@ -1,0 +1,22 @@
+<div id="homepage-container">
+  <div id="categorylist-left-column">
+    <h3 align="center">Departments</h3>
+    <ul class='cat-list'>
+      <% @categories.each do |category| %>
+        <li><%= link_to category.name, category_path(category) %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div id="itemslist-center-column">
+    <h3 align="center">Popular Items</h3>
+    <% @items.each do |item| %>
+      <li><%= link_to item.name, item_path(item) %></li>
+        <li><%= item.description %></li>
+    <% end %>
+  </div>
+
+  <div id="friendfeed-right-column">
+    <h3 align="center">What Your Friends Are Buying</h3>
+  </div>
+</div>
