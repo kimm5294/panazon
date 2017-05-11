@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   def import
-    Item.import(params[:file])
+    Item.import(params[:file].path, session[:user_id])
 
     redirect_to root_path
   end

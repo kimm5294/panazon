@@ -14,7 +14,7 @@ class Item < ApplicationRecord
     # csv_array.map { |row| row.to_hash }
 
     CSV.foreach(file, headers: true) do |row|
-      categories = row.delete("categories")
+      categories = row.delete("categories")[1]
 
       item = Item.new row.to_hash
       item.seller_id = user_id

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :items, except: [:index]
   end
 
-  get 'import/items' => 'items#import' do
+  post 'import/items' => 'items#import' do
     collection { post :import }
   end
 
