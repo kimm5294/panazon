@@ -31,6 +31,24 @@ class UsersController < ApplicationController
     redirect_to '/'
   end
 
+  def clear_cart
+    @user = current_user
+    @user.clear_cart
+    redirect_to '/'
+  end
+
+  def search
+    @user = User.find_by_username(params[:name])
+    @item = Item.find_by_name(params[:name])
+    if @user
+      redirect_to "/users/#{@user.id}"
+    elsif @item
+      redirect_to "/items/#{@item.id}"
+    else
+      redirect_to "/"
+    end
+  end
+
   private
     def user_params
       params.require(:user).permit(:username, :email, :password, :password_confirmation)

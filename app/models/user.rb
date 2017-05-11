@@ -87,4 +87,10 @@ class User < ApplicationRecord
     end
     friends_sales
   end
+
+  def clear_cart
+    self.cart.map do |sale|
+      sale.destroy
+    end
+  end
 end

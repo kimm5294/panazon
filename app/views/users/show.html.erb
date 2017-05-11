@@ -15,9 +15,9 @@
                 <br>
                 Order made on <%= purchase.created_at.to_date %>
                 <br>
-                Quantity: <%= purchase.item.count %>
+                Quantity: <%= purchase.quantity %>
                 <br>
-                Price: $<%= number_with_precision(purchase.item.price_in_dollars, precision: 2) %>
+                Price: $<%= number_with_precision(purchase.item.price_in_dollars * purchase.quantity, precision: 2) %>
               </td>
             </tr>
           <% end %>

@@ -18,4 +18,7 @@ Rails.application.routes.draw do
   end
 
   post "/users/:id/checkout" => 'users#checkout'
+  post "/users/:id/clear_cart" => 'users#clear_cart'
+
+  get "/search" => 'users#search'
 end

@@ -3,7 +3,10 @@
   <head>
     <title>Panazon</title>
     <%= csrf_meta_tags %>
-
+    <!-- Latest compiled and minified CSS -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+    <!-- Latest compiled and minified JavaScript -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
@@ -13,6 +16,7 @@
       <nav>
         <ul class="nav">
 
+      <li class="nav-li-link"><a href="/">Home</a></li>
       <% if logged_in? %>
         <li class="nav-li-link"><%= link_to "Log out", session_path(current_user), method: :delete %></li>
         <li class="nav-li-link"><%= link_to "Profile", user_path(current_user) %></li>
@@ -20,11 +24,11 @@
         <li class="nav-li-link"><%= link_to "Log In", new_session_path %></li>
         <li class="nav-li-link"><%= link_to "Register", new_user_path %></li>
       <% end %>
-        <li class="nav-li-link"><a href="/">Home</a></li>
-        <form>
-          <input type="text" placeholder="Search..." required>
-          <input type="button" value="Search">
-        </form>
+
+      <%= form_tag("/search", method: "get") do %>
+        <%= text_field_tag(:name) %>
+        <%= submit_tag("Search") %>
+      <% end %>
       </ul>
 
         <div class="container">
