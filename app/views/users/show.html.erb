@@ -1,86 +1,91 @@
 <% if logged_in? %>
   <% if @user.id == current_user.id %>
-    <div class="owner-user-page">
-      <% if !!@user.first_name %>
-        <h1>Welcome back, <%= @user.first_name %></h1>
-      <% else %>
-        <h1>Welcome back!</h1>
-      <% end %>
+    <% if !!@user.first_name %>
+      <h1>Welcome back, <%= @user.first_name %></h1>
+    <% else %>
+      <h1>Welcome back!</h1>
+    <% end %>
 
-      <%= render 'users/friends_feed' %>
+    <div class="row" id="profile-page">
+      <div class="col-md-8">
+        <div id="past-orders-section">
+          <h3 id="past-orders-header">Past Orders</h3>
+          <table id="past-orders-list">
+            <% @user.past_orders.each do |purchase| %>
+              <tr>
+                <td>
+                  <%= purchase.item.name %>
+                  <br>
+                  Order made on <%= purchase.created_at.to_date %>
+                  <br>
+                  Quantity: <%= purchase.quantity %>
+                  <br>
+                  Price: $<%= number_with_precision(purchase.item.price_in_dollars * purchase.quantity, precision: 2) %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
 
-      <div id="past-orders-section">
-        <h3 id="past-orders-header">Past Orders</h3>
-        <table id="past-orders-list">
-          <% @user.past_orders.each do |purchase| %>
-            <tr>
-              <td>
-                <%= purchase.item.name %>
-                <br>
-                Order made on <%= purchase.created_at.to_date %>
-                <br>
-                Quantity: <%= purchase.quantity %>
-                <br>
-                Price: $<%= number_with_precision(purchase.item.price_in_dollars * purchase.quantity, precision: 2) %>
-              </td>
-            </tr>
-          <% end %>
-        </table>
+        <div id="sold-items-section">
+          <h3>Sold Items</h3>
+          <table id="sold-items-list">
+            <% @user.sold_items.each do |sale| %>
+              <tr>
+                <td>
+                  <%= sale.item.name %>
+                  <br>
+                  Order made on <%= sale.created_at.to_date %>
+                  <br>
+                  Quantity: <%= sale.item.count %>
+                  <br>
+                  Price: $<%= number_with_precision(sale.item.price_in_dollars, precision: 2) %>
+                </td>
+              </tr>
+              <br>
+            <% end %>
+          </table>
+        </div>
+
+        <div id="unsold-items-section">
+          <h3>Unsold Items</h3>
+          <table id="unsold-items-list">
+            <% @user.items_for_sale.where("count>'0'").each do |item| %>
+              <tr>
+                <td>
+                  <%= item.name %>
+                  <br>
+                  Listed on <%= item.created_at.to_date %>
+                  <br>
+                  Quantity: <%= item.count %>
+                  <br>
+                  Price: $<%= number_with_precision(item.price_in_dollars, precision: 2) %>
+                  <br>
+                  <%= link_to 'Remove item', item_path(item, user_id: @user.id),
+                      method: :delete %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+
       </div>
 
-      <div id="sold-items-section">
-        <h3>Sold Items</h3>
-        <table id="sold-items-list">
-          <% @user.sold_items.each do |sale| %>
-            <tr>
-              <td>
-                <%= sale.item.name %>
-                <br>
-                Order made on <%= sale.created_at.to_date %>
-                <br>
-                Quantity: <%= sale.item.count %>
-                <br>
-                Price: $<%= number_with_precision(sale.item.price_in_dollars, precision: 2) %>
-              </td>
-            </tr>
-            <br>
-          <% end %>
-        </table>
-      </div>
+      <div class="col-md-4">
+        <%= render 'users/friends_feed' %>
 
-      <div id="unsold-items-section">
-        <h3>Unsold Items</h3>
-        <table id="unsold-items-list">
-          <% @user.items_for_sale.where("count>'0'").each do |item| %>
-            <tr>
-              <td>
-                <%= item.name %>
-                <br>
-                Listed on <%= item.created_at.to_date %>
-                <br>
-                Quantity: <%= item.count %>
-                <br>
-                Price: $<%= number_with_precision(item.price_in_dollars, precision: 2) %>
-                <br>
-                <%= link_to 'Remove item', item_path(item, user_id: @user.id),
-                    method: :delete %>
-              </td>
-            </tr>
+        <div class="upload-csv">
+          <h3>Sell more items!</h3>
+          <p>Upload a CSV with a list of items that you would like to sell.</p>
+          <p>Please be sure to include the following categories: name, description, unit, price (in cents), categories, and count.</p>
+          <p>Please also be sure to separate an item's categories with a semicolon (no space).</p>
+          <p><a href="/csv_example">Here</a> is a good example.</p>
+          <%= render 'shared/error_messages' %>
+          <%= form_tag import_items_path, multipart: true do %>
+          <%= file_field_tag :file %>
+          <%= submit_tag "Import CSV" %>
           <% end %>
-        </table>
-      </div>
-
-      <div class="upload-csv">
-        <h3>Sell more items!</h3>
-        <p>Upload a CSV with a list of items that you would like to sell.</p>
-        <p>Please be sure to include the following categories: name, description, unit, price (in cents), categories, and count.</p>
-        <p>Please also be sure to separate an item's categories with a semicolon (no space).</p>
-        <p><a href="/csv_example">Here</a> is a good example.</p>
-        <%= render 'shared/error_messages' %>
-        <%= form_tag import_items_path, multipart: true do %>
-        <%= file_field_tag :file %>
-        <%= submit_tag "Import CSV" %>
-        <% end %>
+        </div>
       </div>
 
     </div>
@@ -123,3 +128,5 @@
     <h1>This is the profile page of <%= @user.username %></h1>
   </div>
 <% end %>
+
+</div>
