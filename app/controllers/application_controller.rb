@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
   def logged_in?
     current_user != nil
   end
+
+  def csv_example
+    render :csv_example
+  end
 end

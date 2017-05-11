@@ -14,12 +14,13 @@ class Item < ApplicationRecord
     # csv_array.map { |row| row.to_hash }
 
     CSV.foreach(file, headers: true) do |row|
-      categories = row.delete("categories")
+      categories = row.delete("categories")[1]
 
       item = Item.new row.to_hash
       item.seller_id = user_id
       item.save
       categories.split(";").each do |category|
+        category.downcase!.capitalize!
         item_category = Category.find_by(name: category)
         CategoriesItem.create(category_id: item_category.id, item_id: item.id) if !!item_category
       end
