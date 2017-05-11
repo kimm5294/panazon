@@ -25,10 +25,11 @@
         <li class="nav-li-link"><%= link_to "Log In", new_session_path %></li>
         <li class="nav-li-link"><%= link_to "Register", new_user_path %></li>
       <% end %>
-        <form>
-          <input type="text" placeholder="Search..." required>
-          <input type="button" value="Search">
-        </form>
+
+      <%= form_tag("/search", method: "get") do %>
+        <%= text_field_tag(:name) %>
+        <%= submit_tag("Search") %>
+      <% end %>
       </ul>
 
         <div class="container">
