@@ -4,7 +4,6 @@
 
     <div id="past-orders-section">
       <h3 id="past-orders-header">Past Orders</h3>
-
       <table id="unsold-items-list">
         <% @user.purchases.each do |purchase| %>
           <tr>
@@ -83,7 +82,7 @@
       <h3 id="past-orders-header">Past Orders</h3>
 
       <ul id="past-orders-list">
-        <% @user.purchases.each do |purchase| %>
+        <% @user.past_orders.each do |purchase| %>
           <li>
             Items Purchased: <%= purchase.item.name %>
             <br>
